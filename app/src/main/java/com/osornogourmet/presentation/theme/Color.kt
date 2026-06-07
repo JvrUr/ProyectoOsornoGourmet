@@ -18,3 +18,10 @@ val TextPrimary = Color(0xFFE0E0E0)
 val TextSecondary = Color(0xFFA0A0A0)
 
 val ErrorRed = Color(0xFFCF6679)
+
+val CreamBackground = Color(0xFFFDFBF7)
+val SubtleText = Color(0xFF757575)
+val DarkText = Color(0xFF1E1E1E)
+val White = Color(0xFFFFFFFF)
+
+

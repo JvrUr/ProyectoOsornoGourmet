@@ -1,5 +1,6 @@
-﻿package com.osornogourmet.presentation.ui.foodplace
+package com.osornogourmet.presentation.ui.foodplace
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -42,26 +43,41 @@ fun FoodPlaceFormScreen(
     var expanded by remember { mutableStateOf(false) }
     val categories = listOf("Restaurante", "Café", "Pastelería", "Comida Rápida", "Mercado", "Bar", "Cocina Casera", "Emporio")
 
+    val textFieldColors = OutlinedTextFieldDefaults.colors(
+        focusedTextColor = TextPrimary,
+        unfocusedTextColor = TextPrimary,
+        focusedBorderColor = GoldAccent,
+        unfocusedBorderColor = SurfaceDarkElevated,
+        focusedLabelColor = GoldAccent,
+        unfocusedLabelColor = TextSecondary,
+        cursorColor = GoldAccent,
+        focusedLeadingIconColor = GoldAccent,
+        unfocusedLeadingIconColor = TextSecondary,
+        focusedTrailingIconColor = GoldAccent,
+        unfocusedTrailingIconColor = TextSecondary
+    )
+
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Text(
                         if (isEditing) "Editar Local" else "Nuevo Local",
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        color = TextPrimary
                     )
                 },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Volver")
+                        Icon(Icons.Default.ArrowBack, contentDescription = "Volver", tint = GoldAccent)
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = CreamBackground
+                    containerColor = DarkBackground
                 )
             )
         },
-        containerColor = CreamBackground
+        containerColor = DarkBackground
     ) { padding ->
         Column(
             modifier = Modifier
@@ -78,7 +94,7 @@ fun FoodPlaceFormScreen(
                 label = { Text("Nombre del local *") },
                 leadingIcon = { Icon(Icons.Default.Restaurant, contentDescription = null) },
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(12.dp),
+                shape = RoundedCornerShape(12.dp), colors = textFieldColors,
                 singleLine = true
             )
 
@@ -97,15 +113,16 @@ fun FoodPlaceFormScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .menuAnchor(),
-                    shape = RoundedCornerShape(12.dp)
+                    shape = RoundedCornerShape(12.dp), colors = textFieldColors
                 )
                 ExposedDropdownMenu(
                     expanded = expanded,
-                    onDismissRequest = { expanded = false }
+                    onDismissRequest = { expanded = false },
+                    modifier = Modifier.background(SurfaceDark)
                 ) {
                     categories.forEach { cat ->
                         DropdownMenuItem(
-                            text = { Text(cat) },
+                            text = { Text(cat, color = TextPrimary) },
                             onClick = {
                                 category = cat
                                 expanded = false
@@ -122,7 +139,7 @@ fun FoodPlaceFormScreen(
                 label = { Text("Descripción") },
                 leadingIcon = { Icon(Icons.Default.Description, contentDescription = null) },
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(12.dp),
+                shape = RoundedCornerShape(12.dp), colors = textFieldColors,
                 minLines = 2,
                 maxLines = 4
             )
@@ -134,7 +151,7 @@ fun FoodPlaceFormScreen(
                 label = { Text("Dirección *") },
                 leadingIcon = { Icon(Icons.Default.LocationOn, contentDescription = null) },
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(12.dp),
+                shape = RoundedCornerShape(12.dp), colors = textFieldColors,
                 singleLine = true
             )
 
@@ -148,7 +165,7 @@ fun FoodPlaceFormScreen(
                     onValueChange = { latitude = it },
                     label = { Text("Latitud") },
                     modifier = Modifier.weight(1f),
-                    shape = RoundedCornerShape(12.dp),
+                    shape = RoundedCornerShape(12.dp), colors = textFieldColors,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     singleLine = true
                 )
@@ -157,7 +174,7 @@ fun FoodPlaceFormScreen(
                     onValueChange = { longitude = it },
                     label = { Text("Longitud") },
                     modifier = Modifier.weight(1f),
-                    shape = RoundedCornerShape(12.dp),
+                    shape = RoundedCornerShape(12.dp), colors = textFieldColors,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     singleLine = true
                 )
@@ -170,7 +187,7 @@ fun FoodPlaceFormScreen(
                 label = { Text("Rating (0.0 - 5.0)") },
                 leadingIcon = { Icon(Icons.Default.Star, contentDescription = null) },
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(12.dp),
+                shape = RoundedCornerShape(12.dp), colors = textFieldColors,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                 singleLine = true
             )
@@ -182,7 +199,7 @@ fun FoodPlaceFormScreen(
                 label = { Text("Teléfono") },
                 leadingIcon = { Icon(Icons.Default.Phone, contentDescription = null) },
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(12.dp),
+                shape = RoundedCornerShape(12.dp), colors = textFieldColors,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
                 singleLine = true
             )
@@ -194,7 +211,7 @@ fun FoodPlaceFormScreen(
                 label = { Text("Horario de atención") },
                 leadingIcon = { Icon(Icons.Default.Schedule, contentDescription = null) },
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(12.dp),
+                shape = RoundedCornerShape(12.dp), colors = textFieldColors,
                 singleLine = true,
                 placeholder = { Text("Ej: Lun-Vie 09:00-21:00") }
             )
@@ -222,18 +239,25 @@ fun FoodPlaceFormScreen(
                     .fillMaxWidth()
                     .height(52.dp),
                 shape = RoundedCornerShape(12.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = CrimsonPrimary),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = GoldAccent,
+                    contentColor = DarkBackground,
+                    disabledContainerColor = SurfaceDarkElevated,
+                    disabledContentColor = TextSecondary
+                ),
                 enabled = name.isNotBlank() && address.isNotBlank()
             ) {
                 Icon(
                     if (isEditing) Icons.Default.Save else Icons.Default.Add,
                     contentDescription = null,
-                    modifier = Modifier.size(20.dp)
+                    modifier = Modifier.size(20.dp),
+                    tint = DarkBackground
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     if (isEditing) "Guardar Cambios" else "Agregar Local",
-                    fontWeight = FontWeight.SemiBold
+                    fontWeight = FontWeight.SemiBold,
+                    color = DarkBackground
                 )
             }
 

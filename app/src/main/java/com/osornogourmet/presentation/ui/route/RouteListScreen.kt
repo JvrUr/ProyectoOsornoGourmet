@@ -1,4 +1,4 @@
-﻿package com.osornogourmet.presentation.ui.route
+package com.osornogourmet.presentation.ui.route
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -40,15 +40,15 @@ fun RouteListScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text("Mis Rutas", fontWeight = FontWeight.Bold)
+                    Text("Mis Rutas", fontWeight = FontWeight.Bold, color = TextPrimary)
                 },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Volver")
+                        Icon(Icons.Default.ArrowBack, contentDescription = "Volver", tint = GoldAccent)
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = CreamBackground
+                    containerColor = DarkBackground
                 )
             )
         },
@@ -56,13 +56,13 @@ fun RouteListScreen(
             FloatingActionButton(
                 onClick = onCreateRoute,
                 containerColor = GoldAccent,
-                contentColor = White,
+                contentColor = DarkBackground,
                 shape = RoundedCornerShape(16.dp)
             ) {
                 Icon(Icons.Default.Add, contentDescription = "Crear ruta")
             }
         },
-        containerColor = CreamBackground
+        containerColor = DarkBackground
     ) { padding ->
         if (uiState.isLoading) {
             Box(
@@ -71,7 +71,7 @@ fun RouteListScreen(
                     .padding(padding),
                 contentAlignment = Alignment.Center
             ) {
-                CircularProgressIndicator(color = CrimsonPrimary)
+                CircularProgressIndicator(color = GoldAccent)
             }
         } else if (uiState.routes.isEmpty()) {
             Box(
@@ -86,23 +86,23 @@ fun RouteListScreen(
                     Text(
                         "No tienes rutas creadas",
                         style = MaterialTheme.typography.titleMedium,
-                        color = DarkText
+                        color = TextPrimary
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
                         "Crea tu primera ruta gastronómica",
                         style = MaterialTheme.typography.bodyMedium,
-                        color = SubtleText
+                        color = TextSecondary
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Button(
                         onClick = onCreateRoute,
-                        colors = ButtonDefaults.buttonColors(containerColor = GoldAccent),
+                        colors = ButtonDefaults.buttonColors(containerColor = GoldAccent, contentColor = DarkBackground),
                         shape = RoundedCornerShape(12.dp)
                     ) {
-                        Icon(Icons.Default.Add, contentDescription = null)
+                        Icon(Icons.Default.Add, contentDescription = null, tint = DarkBackground)
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text("Crear Ruta")
+                        Text("Crear Ruta", color = DarkBackground)
                     }
                 }
             }
@@ -160,7 +160,7 @@ fun RouteCard(
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = White),
+        colors = CardDefaults.cardColors(containerColor = SurfaceDark),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Column(
@@ -191,12 +191,13 @@ fun RouteCard(
                     Text(
                         text = route.name,
                         style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.SemiBold
+                        fontWeight = FontWeight.SemiBold,
+                        color = TextPrimary
                     )
                     Text(
                         text = "${route.foodPlaceIds.size} locales · ${route.estimatedTime}",
                         style = MaterialTheme.typography.bodySmall,
-                        color = SubtleText
+                        color = TextSecondary
                     )
                 }
             }
@@ -206,7 +207,7 @@ fun RouteCard(
                 Text(
                     text = route.description,
                     style = MaterialTheme.typography.bodySmall,
-                    color = SubtleText,
+                    color = TextSecondary,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -225,7 +226,7 @@ fun RouteCard(
                         Text(
                             text = place.name,
                             style = MaterialTheme.typography.bodySmall,
-                            color = DarkText,
+                            color = TextPrimary,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
@@ -235,7 +236,7 @@ fun RouteCard(
                     Text(
                         text = "+${foodPlaces.size - 3} más",
                         style = MaterialTheme.typography.bodySmall,
-                        color = CrimsonPrimary,
+                        color = GoldAccent,
                         modifier = Modifier.padding(start = 22.dp)
                     )
                 }
@@ -247,7 +248,10 @@ fun RouteCard(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.End
             ) {
-                TextButton(onClick = onViewOnMap) {
+                TextButton(
+                    onClick = onViewOnMap,
+                    colors = ButtonDefaults.textButtonColors(contentColor = GoldAccent)
+                ) {
                     Icon(Icons.Default.Map, contentDescription = null, modifier = Modifier.size(16.dp))
                     Spacer(modifier = Modifier.width(4.dp))
                     Text("Ver en Mapa")
