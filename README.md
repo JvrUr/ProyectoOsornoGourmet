@@ -1,4 +1,4 @@
-﻿# 🍽️ Osorno Gourmet
+﻿#Osorno Gourmet
 
 Aplicación móvil Android desarrollada en **Kotlin** con **Jetpack Compose** para explorar rutas de locales de comida en la ciudad de **Osorno, Chile**.
 
@@ -97,19 +97,7 @@ app/src/main/java/com/OsornoGourmet/
 git clone https://github.com/tu-usuario/Proyecto-Kotlin.git
 ```
 
-### 2. Configurar Google Maps API Key
-Crear archivo `secrets.properties` en la raíz del proyecto:
-```properties
-MAPS_API_KEY=TU_API_KEY_DE_GOOGLE_MAPS
-```
-
-Para obtener una API Key:
-1. Ir a [Google Cloud Console](https://console.cloud.google.com/)
-2. Crear un proyecto o seleccionar uno existente
-3. Habilitar "Maps SDK for Android"
-4. Crear una API Key en Credenciales
-
-### 3. Abrir en Android Studio
+### 2. Abrir en Android Studio
 - Abrir el proyecto con Android Studio Hedgehog o superior
 - Sincronizar Gradle
 - Ejecutar en un emulador o dispositivo físico
@@ -129,7 +117,7 @@ La app incluye 12 locales de comida reales de Osorno:
 - Rincón Cervecero
 - Emporio Sureño
 
-## 👤 Autor
+## Javier Uribe
 
-Proyecto académico - Desarrollo de Aplicaciones Móviles con Kotlin
+Desarrollo de Aplicaciones Móviles con Kotlin
 
