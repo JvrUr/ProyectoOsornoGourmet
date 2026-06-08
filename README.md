@@ -48,46 +48,38 @@ La app incluye las siguientes pantallas:
 | **I** - Interface Segregation | Interfaces separadas para `UserRepository`, `FoodPlaceRepository`, `RouteRepository` |
 | **D** - Dependency Inversion | Los UseCases dependen de interfaces, no de implementaciones concretas |
 
-## Tecnologías
-
-- **Kotlin** 1.9+
-- **Jetpack Compose** (Material 3)
-- **Room Database** (persistencia local)
-- **Navigation Compose**
-- **Google Maps Compose** (maps-compose 4.3)
-- **Coroutines + StateFlow** (asincronía reactiva)
 
 ## Estructura del Proyecto
 
 ```
 app/src/main/java/com/OsornoGourmet/
-├── data/                           # Capa de Datos
+├── data/                           
 │   ├── local/
-│   │   ├── AppDatabase.kt         # Room DB (Singleton)
-│   │   ├── FoodPlaceSeeder.kt     # Datos pre-cargados
-│   │   ├── Mappers.kt             # Entity ↔ Domain mapping
-│   │   ├── dao/                   # Data Access Objects
-│   │   └── entity/                # Room Entities
-│   └── repository/                # Implementaciones de repositorios
-├── domain/                        # Capa de Dominio
-│   ├── model/                     # Modelos de negocio
-│   ├── repository/                # Interfaces de repositorios
-│   └── usecase/                   # Casos de uso
-│       ├── auth/                  # Login, Register
-│       ├── foodplace/             # CRUD locales
-│       └── route/                 # CRUD rutas
-├── presentation/                  # Capa de Presentación
-│   ├── theme/                     # Colores, tipografía, tema
-│   ├── viewmodel/                 # ViewModels (MVVM)
-│   ├── navigation/                # Navegación
+│   │   ├── AppDatabase.kt         
+│   │   ├── FoodPlaceSeeder.kt     
+│   │   ├── Mappers.kt             
+│   │   ├── dao/                   
+│   │   └── entity/                
+│   └── repository/                
+├── domain/                        
+│   ├── model/                     
+│   ├── repository/                
+│   └── usecase/                   
+│       ├── auth/                  
+│       ├── foodplace/             
+│       └── route/                 
+├── presentation/                  
+│   ├── theme/                     
+│   ├── viewmodel/                
+│   ├── navigation/                
 │   ├── ui/
-│   │   ├── auth/                  # Login, Register
-│   │   ├── home/                  # Dashboard
-│   │   ├── foodplace/             # Lista y formulario de locales
-│   │   ├── route/                 # Lista y creación de rutas
-│   │   └── map/                   # Google Maps
-│   └── MainActivity.kt           # Punto de entrada
-└── OsornoGourmetApp.kt        # Application class
+│   │   ├── auth/                  
+│   │   ├── home/                  
+│   │   ├── foodplace/             
+│   │   ├── route/                 
+│   │   └── map/                   
+│   └── MainActivity.kt           
+└── OsornoGourmetApp.kt        
 ```
 
 ## 🚀 Configuración
