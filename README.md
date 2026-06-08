@@ -1,4 +1,4 @@
-﻿##Osorno Gourmet
+Osorno Gourmet
 
 Aplicación móvil Android desarrollada en **Kotlin** con **Jetpack Compose** para explorar rutas de locales de comida en la ciudad de **Osorno, Chile**.
 
